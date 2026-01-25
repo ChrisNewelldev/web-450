@@ -41,7 +41,7 @@ import { environment } from '../../../../environments/environment';
         </div>
 
         <div class="form__actions">
-          <input type="submit" class="button button--primary" value="Submit">
+          <input type="submit" class="button button--primary" value="Send">
         </div>
       </form>
       <br />
