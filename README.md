@@ -61,3 +61,16 @@ The courses repository consist of two directories: data-files and examples. The 
 git clone https://github.com/buwebdev/web-450.git
 cd web-450
 ```
+
+## Week 2 — APRE Major Task (Assignment 2.3)
+
+### Location
+`week-2/apre/`
+
+### Run (server)
+```bash
+cd week-2/apre/apre-server
+npm install
+npm test
+npm start
+# API runs on http://localhost:3000
