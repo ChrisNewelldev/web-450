@@ -143,3 +143,31 @@ describe('Apre Sales Report API - Sales by Region', () => {
     });
   });
 });
+describe('GET /api/reports/sales/monthly-sales', () => {
+  it('should return 200', async () => {
+    const res = await request(app).get('/api/reports/sales/monthly-sales');
+    expect(res.statusCode).toBe(200);
+  });
+
+  it('should return an array with months and totalSales arrays', async () => {
+    const res = await request(app).get('/api/reports/sales/monthly-sales');
+    expect(Array.isArray(res.body)).toBe(true);
+
+    if (res.body.length > 0) {
+      expect(Array.isArray(res.body[0].months)).toBe(true);
+      expect(Array.isArray(res.body[0].totalSales)).toBe(true);
+      expect(res.body[0].months.length).toBe(res.body[0].totalSales.length);
+    }
+  });
+
+  it('months should be in ascending order (if any returned)', async () => {
+    const res = await request(app).get('/api/reports/sales/monthly-sales');
+
+    if (res.body.length > 0) {
+      const months = res.body[0].months;
+      for (let i = 1; i < months.length; i++) {
+        expect(months[i]).toBeGreaterThanOrEqual(months[i - 1]);
+      }
+    }
+  });
+});

@@ -77,5 +77,45 @@ router.get('/regions/:region', (req, res, next) => {
     next(err);
   }
 });
+/**
+ * @description
+ *
+ * GET /monthly-sales
+ *
+ * Fetches monthly sales totals (months 1–12) for charting/tabular display.
+ *
+ * Response shape:
+ * [
+ *   { months: [1,2,3], totalSales: [1234, 5678, 9012] }
+ * ]
+ */
+router.get('/monthly-sales', (req, res, next) => {
+  try {
+    mongo(async db => {
+      const data = await db.collection('sales').aggregate([
+        // If date is already a Date in Mongo, this is harmless; if it's a string, it converts it.
+        { $addFields: { date: { $toDate: '$date' } } },
 
+        { $group: { _id: { $month: '$date' }, totalSales: { $sum: '$amount' } } },
+        { $project: { _id: 0, month: '$_id', totalSales: 1 } },
+        { $sort: { month: 1 } },
+
+        // Convert to chart-friendly arrays like other APRE report endpoints do
+        {
+          $group: {
+            _id: null,
+            months: { $push: '$month' },
+            totalSales: { $push: '$totalSales' }
+          }
+        },
+        { $project: { _id: 0, months: 1, totalSales: 1 } }
+      ]).toArray();
+
+      res.send(data);
+    }, next);
+  } catch (err) {
+    console.error('Error in /monthly-sales', err);
+    next(err);
+  }
+});
 module.exports = router;
