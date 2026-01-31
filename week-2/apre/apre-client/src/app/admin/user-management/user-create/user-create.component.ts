@@ -15,10 +15,11 @@ import { environment } from '../../../../environments/environment';
       @if (errorMessage) {
         <div class="message message--error">{{ errorMessage }}</div>
       }
+      <!-- Week 3 Minor: Added placeholder to username input to improve UX clarity (UserCreateComponent). -->
       <form [formGroup]="newUserForm" (ngSubmit)="addUser();" class="form">
         <div class="form__group">
           <label class="label" for="username">Username<span class="required">*</span></label>
-          <input class="input" type="text" formControlName="username" id="username" name="username">
+          <input class="input" type="text" formControlName="username" id="username" name="username" placeholder="Enter username">
         </div>
 
         <div class="form__group">
