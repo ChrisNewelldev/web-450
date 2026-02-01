@@ -25,3 +25,41 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Week 3 Major Task (Sprint 2): Agent Performance – Call Duration by Date Range
+
+### What changed
+Added the **Call Duration by Date Range** report (server API + Angular component) and unit tests.
+
+### Server (apre-server)
+From the repo root:
+
+```bash
+cd week-2/apre/apre-server
+npm install
+npm test
+npm start
+```
+
+API endpoint:
+
+- `GET /api/reports/agent-performance/call-duration-by-date-range?startDate=2023-01-01&endDate=2023-01-31`
+
+### Client (apre-client)
+From the repo root:
+
+```bash
+cd week-2/apre/apre-client
+npm install
+npm test
+npm start
+```
+
+UI route:
+
+- `http://localhost:4200/reports/agent-performance/call-duration-by-date-range`
+
+
+	•	how to run: npm install, npm start
+	•	how to test: npm test
+	•	note: “Karma/ChromeHeadless reports ‘full page reload’ even though specs show SUCCESS” (paste the exact line)
