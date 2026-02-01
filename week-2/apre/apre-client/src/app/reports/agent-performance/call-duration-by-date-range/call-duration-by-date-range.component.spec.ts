@@ -28,13 +28,6 @@ describe('CallDurationByDateRangeComponent', () => {
     expect(titleElement.textContent).toContain('Call Duration By Date Range');
   });
 
-  it('should display the title "Call Duration By Date Range"', () => {
-    const compiled = fixture.nativeElement;
-    const titleElement = compiled.querySelector('h1');
-    expect(titleElement).toBeTruthy();
-    expect(titleElement.textContent).toContain('Call Duration By Date Range');
-  });
-
   it('should update endDate when onEndDateSelected is called', () => {
     const testStartDate = new Date('2024-08-07');
     const testEndDate = new Date('2024-08-08');
